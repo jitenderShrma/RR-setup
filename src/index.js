@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Provider} from 'react';
 import ReactDOM from 'react-dom';
 
 import * as serviceWorker from './serviceWorker';

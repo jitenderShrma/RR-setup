@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, { Component} from 'react';
+import { Provider } from 'react-redux';
 import { Router } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 import { Chart } from 'react-chartjs-2';
@@ -11,6 +12,7 @@ import 'react-perfect-scrollbar/dist/css/styles.css';
 import './assets/scss/index.scss';
 import validators from './common/validators';
 import Routes from './Routes';
+import store from './redux/store';
 
 const browserHistory = createBrowserHistory();
 
@@ -27,9 +29,11 @@ export default class App extends Component {
   render() {
     return (
       <ThemeProvider theme={theme}>
+        <Provider store={store}>
         <Router history={browserHistory}>
           <Routes />
         </Router>
+        </Provider>
       </ThemeProvider>
     );
   }
