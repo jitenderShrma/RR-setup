@@ -6,10 +6,6 @@ import {compose , lifecycle } from 'recompose';
 import AuthModal from '../views/User';
 
 const PrivateRoute = ({ layout:Layout, component: Component, auth, ...rest }) => {
-  const [s1, s1Change] = React.useState('initial values');
-  setTimeout(() => {
-    s1Change({s1: 'changed'})
-  });
   return (<Route
     {...rest}
     render={props =>
@@ -17,7 +13,7 @@ const PrivateRoute = ({ layout:Layout, component: Component, auth, ...rest }) =>
           {auth.isAuthenticate === true ? (
         <Component {...props} />
       ) : (
-        <AuthModal s1={s1}/>
+        <AuthModal/>
       )}
       </Layout>
     }
