@@ -1,54 +1,36 @@
-// import React from 'react';
-// import { Route } from 'react-router-dom';
-// import PropTypes from 'prop-types';
-
-// const RouteWithLayout = props => {
-//   const { layout: Layout, component: Component, ...rest } = props;
-
-//   return (
-//     <Route
-//       {...rest}
-//       render={matchProps => (
-//         <Layout>
-//           <Component {...matchProps} />
-//         </Layout>
-//       )}
-//     />
-//   );
-// };
-
-// RouteWithLayout.propTypes = {
-//   component: PropTypes.any.isRequired,
-//   layout: PropTypes.any.isRequired,
-//   path: PropTypes.string
-// };
-
-// export default RouteWithLayout;
-
 import React from 'react';
-import { Route, Redirect } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import {compose , lifecycle } from 'recompose';
+import AuthModal from '../views/User';
 
-const PrivateRoute = ({ layout: Layout, component: Component, auth, ...rest }) => (
-    <Route
-        {...rest}
-        render={props =>
-            <Layout>
-                {auth.isAuthenticate === true ? (
-                    <Component {...props} />
-                ) : (
-                        <Redirect to="/login" />
-                    )}
-            </Layout>
-        }
-    />
-);
+const PrivateRoute = ({ layout:Layout, component: Component, auth, ...rest }) => {
+  const [s1, s1Change] = React.useState('initial values');
+  setTimeout(() => {
+    s1Change({s1: 'changed'})
+  });
+  return (<Route
+    {...rest}
+    render={props =>
+      <Layout>
+          {auth.isAuthenticate === true ? (
+        <Component {...props} />
+      ) : (
+        <AuthModal s1={s1}/>
+      )}
+      </Layout>
+    }
+  />)
+};
 
 PrivateRoute.propTypes = {
-    auth: PropTypes.object.isRequired
+  auth: PropTypes.object.isRequired
 };
 const mapStateToProps = state => ({
     auth: state.auth
 });
-export default connect(mapStateToProps, {})(PrivateRoute);
+const enhancer = compose(
+  connect(mapStateToProps, {})
+);
+export default enhancer(PrivateRoute);

@@ -1,0 +1,8 @@
+.center-align {
+    text-align: center;
+}
+.MuiAvatar-root-custom {
+    position:relative !important;
+    left:50% !important;
+    transform:translateX(-50%);
+}

@@ -5,7 +5,7 @@ const errors={};
 const authReducer = function(state = errors, action){
   switch(action.type){
     default: 
-    return state
+    return state;
     case GET_ERRORS:
     return action.payload
     case CLEAR_ERROR:

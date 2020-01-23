@@ -36,7 +36,8 @@ const Topbar = props => {
         <RouterLink to="/">
           <img
             alt="Logo"
-            src="/images/logos/logo--white.svg"
+            src="https://zapier.cachefly.net/storage/photos/ef3f5a70fad63691b3ac88608437bfb3.png"
+            style={{width:'10%', marginLeft:'10px'}}
           />
         </RouterLink>
         <div className={classes.flexGrow} />
@@ -47,7 +48,7 @@ const Topbar = props => {
               color="primary"
               variant="dot"
             >
-              <NotificationsIcon />
+              {/* <NotificationsIcon /> */}
             </Badge>
           </IconButton>
           <IconButton
